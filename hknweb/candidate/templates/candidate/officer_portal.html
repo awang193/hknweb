@@ -103,6 +103,18 @@ Officer Portal
         </form>
     </div>
 
+    <div class="table-div">
+        <p>Alternatively, you can import candidates from the Google sheet.</p>
+        {% for message in messages %}
+            <span {% if messages.tags %} class="{{ message.tags }}" {% endif %}
+                class="blue">{{ message }}</span>
+        {% endfor %}
+        <form action="{% url 'candidate:import_cands' %}" method="post" enctype="multipart/form-data" onsubmit="submit_button.disabled = true; return true;">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <input type="submit" name="submit_button" value="Import candidates" />
+        </form>
+    </div>
 </div>
 
 {% endblock %}

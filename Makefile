@@ -2,7 +2,7 @@ PIP_HOME = $(shell python3 -c "import site; import os; print(os.path.join(site.U
 	|| python -c "import site; import os; print(os.path.join(site.USER_BASE, 'bin'))")
 
 VENV := .venv
-BIN := $(VENV)/bin
+BIN := $(VENV)/Scripts
 PYTHON := $(BIN)/python
 MANAGE := HKNWEB_MODE='dev' $(PYTHON) ./manage.py
 
@@ -19,7 +19,7 @@ livereload:
 
 .PHONY: venv
 venv:
-	python3 -m venv $(VENV)
+	python -m venv $(VENV)
 	@echo "When developing, activate the virtualenv with 'source .venv/bin/activate' so Python can access the installed dependencies."
 
 .PHONY: install-prod

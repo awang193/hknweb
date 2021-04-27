@@ -1,4 +1,5 @@
 import csv
+import django
 
 from django.conf import settings
 
@@ -470,6 +471,17 @@ def add_cands(request):
     messages.success(request, "Successfully added candidates!")
 
     return redirect(next_page)
+
+import gsheets
+
+@login_and_permission("auth.add_user")
+def import_cands(request):
+    if request.method != ATTR.POST:
+        raise Http404()
+
+    # messages.success(request, "Successfully imported candidates!")
+
+    return redirect(request.POST.get(ATTR.NEXT, "/"))
 
 class MemberCheckoffView(generic.TemplateView):
     """Form for submitting csv of members for mass checkoffs."""
